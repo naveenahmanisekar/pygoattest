@@ -29,9 +29,9 @@ steps:
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
+    python -m django --version
   displayName: 'Install dependencies'
 
 - script: |
-    pip install Django
-    Django
-  displayName: 'Django'
+     python manage.py migrate
+  displayName: 'Run Django Migrations'
