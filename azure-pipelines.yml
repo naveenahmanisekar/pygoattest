@@ -38,7 +38,7 @@ steps:
 
 - task: FortifyScanCentralSAST@7
   inputs:
-    scanCentralCtrlUrl: 'https://sast.aat.deloitte.com/scancentral-ctrl/'
+    scanCentralCtrlUrl: 'https://sast.aat.deloitte.com/scancentral-ctrl'
     scanCentralClientToken: 'N^Q1xkt>9i<yURq>3YTm'
     sscUrl: 'https://ssc.aat.deloitte.com/ssc'
     sscCiToken: 'ce167069-1666-4abb-9ee1-84b034988219'
