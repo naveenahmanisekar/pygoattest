@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: AAT-Pool
+  vmImage: 'AAT-Pool'
 
 steps:
 - script: echo Hello, world!
