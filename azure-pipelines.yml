@@ -18,12 +18,6 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
   
-
-- script: |
-    echo "Client Token: $(ScanCentral_ClientToken)"
-    echo "SSC CI Token: $(ScanCentral_SscCiToken)"
-    displayName: 'Debug Token Values'
-
 - task: FortifyScanCentralSAST@7
   inputs:
     scanCentralCtrlUrl: 'https://sast.aat.deloitte.com/scancentral-ctrl/'
