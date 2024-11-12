@@ -18,3 +18,15 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: FortifyScanCentralSAST@7
+  inputs:
+    scanCentralCtrlUrl: 'https://sast.aat.deloitte.com/scancentral-ctrl/'
+    scanCentralClientToken: '$(ScanCentral.ClientToken)'
+    sscUrl: 'https://ssc.aat.deloitte.com/ssc'
+    sscCiToken: '$(ScanCentral.SscCiToken)'
+    uploadToSSC: true
+    applicationIdentifierType: 'byId'
+    applicationVersionId: '21830'
+    buildTool: 'none'
+    pythonVersion: '3'
+    pythonRequirementsFile: 'C:\Users\nmanisekar\OneDrive - Deloitte (O365D)\Desktop\GT-Security Tester\Snyk\pygoattest\requirements.txt'
