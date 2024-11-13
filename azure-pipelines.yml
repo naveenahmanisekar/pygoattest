@@ -10,13 +10,6 @@ pool:
   name: AAT-Pool
 
 steps:
-- script: |
-    echo "Pinging Fortify SSC URL..."
-    ping -c 4 ssc.aat.deloitte.com || echo "Unable to reach Fortify SSC URL"
-    
-    echo "Pinging Fortify Scan Central URL..."
-    ping -c 4 sast.aat.deloitte.com/scancentral-ctrl || echo "Unable to reach Fortify Scan Central URL"
-  displayName: 'Ping Fortify SSC and Scan Central URLs'
 
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -31,11 +24,11 @@ steps:
 
 - script: |
     echo "Pinging Fortify SSC URL..."
-    curl -I https://ssc.aat.deloitte.com/ssc || echo "Connection to SSC failed."
-
+    ping -c 4 ssc.aat.deloitte.com || echo "Unable to reach Fortify SSC URL"
+    
     echo "Pinging Fortify Scan Central URL..."
-    curl -I https://sast.aat.deloitte.com/scancentral-ctrl || echo "Connection to ScanCentral failed."
-  displayName: 'Connectivity Test to Fortify SSC and Scan Central'
+    ping -c 4 sast.aat.deloitte.com/scancentral-ctrl || echo "Unable to reach Fortify Scan Central URL"
+  displayName: 'Ping Fortify SSC and Scan Central URLs'
   
 - task: FortifyScanCentralSAST@7
   inputs:
