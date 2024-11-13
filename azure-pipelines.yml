@@ -21,9 +21,9 @@ steps:
 - task: FortifyScanCentralSAST@7
   inputs:
     scanCentralCtrlUrl: 'https://sast.aat.deloitte.com/scancentral-ctrl/'
-    scanCentralClientToken: '$(ScanCentral_ClientToken)'
+    scanCentralClientToken: '$(ScanCentral.ClientToken)'
     sscUrl: 'https://ssc.aat.deloitte.com/ssc'
-    sscCiToken: '$(ScanCentral_SscCiToken)'
+    sscCiToken: '$(ScanCentral.SscCiToken)'
     uploadToSSC: true
     applicationIdentifierType: 'byId'
     applicationVersionId: '21830'
