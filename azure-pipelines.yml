@@ -22,10 +22,33 @@ steps:
 - script: echo "Starting connectivity test to Fortify URLs"
   displayName: 'Start Connectivity Check'
 
+# Test Fortify SSC connectivity with token
 - script: |
-    echo "Pinging Fortify SSC URL..."
-    ping ssc.aat.deloitte.com || echo "Unable to reach Fortify SSC URL"
-  displayName: 'Ping Fortify SSC'
+    echo "Testing Fortify SSC URL..."
+    response=$(curl -s -o response.txt -w "%{http_code}" -X GET https://ssc.aat.deloitte.com/ssc/api/v1/ -H "Authorization: Bearer $(ScanCentral.SscCiToken)")
+    
+    echo "Response Code: $response"
+    if [ "$response" -eq 200 ]; then
+        echo "Successfully authenticated with Fortify SSC"
+    else
+        echo "Failed to authenticate with Fortify SSC. Response Code: $response"
+        cat response.txt
+    fi
+  displayName: 'Test Fortify SSC Connectivity with Token'
+
+# Test Fortify ScanCentral connectivity with token
+- script: |
+    echo "Testing Fortify ScanCentral URL..."
+    response=$(curl -s -o response.txt -w "%{http_code}" -X GET https://sast.aat.deloitte.com/scancentral-ctrl/api/v1/ -H "Authorization: Bearer $(ScanCentral.ClientToken)")
+    
+    echo "Response Code: $response"
+    if [ "$response" -eq 200 ]; then
+        echo "Successfully authenticated with Fortify ScanCentral"
+    else
+        echo "Failed to authenticate with Fortify ScanCentral. Response Code: $response"
+        cat response.txt
+    fi
+  displayName: 'Test Fortify ScanCentral Connectivity with Token'
   
 - task: FortifyScanCentralSAST@7
   inputs:
