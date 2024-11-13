@@ -24,12 +24,12 @@ steps:
 
 - script: |
     echo "Testing Fortify SSC URL..."
-    curl -I https://ssc.aat.deloitte.com/ssc || echo "Unable to reach Fortify SSC URL"
+    curl -L -I https://ssc.aat.deloitte.com/ssc || echo "Unable to reach Fortify SSC URL"
   displayName: 'Test Fortify SSC Connectivity'
 
 - script: |
     echo "Testing Fortify ScanCentral URL..."
-    curl -I https://sast.aat.deloitte.com/scancentral-ctrl || echo "Unable to reach Fortify ScanCentral URL"
+    curl -L -I https://sast.aat.deloitte.com/scancentral-ctrl || echo "Unable to reach Fortify ScanCentral URL"
   displayName: 'Test Fortify ScanCentral Connectivity'
 
 - script: |
