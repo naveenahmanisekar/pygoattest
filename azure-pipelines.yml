@@ -24,11 +24,8 @@ steps:
 
 - script: |
     echo "Pinging Fortify SSC URL..."
-    ping -c 4 ssc.aat.deloitte.com || echo "Unable to reach Fortify SSC URL"
-    
-    echo "Pinging Fortify Scan Central URL..."
-    ping -c 4 sast.aat.deloitte.com/scancentral-ctrl || echo "Unable to reach Fortify Scan Central URL"
-  displayName: 'Ping Fortify SSC and Scan Central URLs'
+    ping ssc.aat.deloitte.com || echo "Unable to reach Fortify SSC URL"
+  displayName: 'Ping Fortify SSC'
   
 - task: FortifyScanCentralSAST@7
   inputs:
