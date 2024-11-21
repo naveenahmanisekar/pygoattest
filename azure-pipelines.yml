@@ -19,10 +19,10 @@ steps:
   displayName: 'Run a multi-line script'
 
 - task: SnykSecurityScan@1
-    inputs:
-      serviceConnectionEndpoint: 'ADO Snyk test'
-      testType: 'app'
-      monitorWhen: 'never'
-      failOnIssues: true
-      projectName: 'Snyk test'
-      organization: 'deloitte-internal-default'
+  inputs:
+    serviceConnectionEndpoint: 'ADO Snyk test'
+    testType: 'app'
+    monitorWhen: 'never'
+    failOnIssues: true
+    projectName: 'Snyk test'
+    organization: 'deloitte-internal-default'
