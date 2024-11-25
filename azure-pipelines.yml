@@ -18,16 +18,6 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- script: |
-    echo "Listing contents of the directory:"
-    dir $(Build.SourcesDirectory)
-  displayName: 'Check directory contents'
-
-# Step 1: Install dependencies
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r $(Build.SourcesDirectory)/requirements.txt
-  displayName: Install dependencies
 - task: SnykSecurityScan@1
   inputs:
     serviceConnectionEndpoint: 'ADO Snyk test'
