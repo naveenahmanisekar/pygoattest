@@ -1,0 +1,34 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+# Step 1: Install dependencies
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r $(Build.SourcesDirectory)\pygoat\requirements.txt
+  displayName: Install dependencies
+- task: SnykSecurityScan@1
+  inputs:
+    serviceConnectionEndpoint: 'ADO Snyk test'
+    testType: 'app'
+    targetFile: '$(Build.SourcesDirectory)\pygoat\requirements.txt'
+    monitorWhen: 'never'
+    failOnIssues: true
+    projectName: 'PyGoat Snyk'
+    organization: 'deloitte-internal-default'
