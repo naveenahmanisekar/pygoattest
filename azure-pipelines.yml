@@ -26,13 +26,13 @@ steps:
 # Step 1: Install dependencies
 - script: |
     python -m pip install --upgrade pip
-    pip install -r $(Build.SourcesDirectory)/pygoattest/requirements.txt
+    pip install -r $(Build.SourcesDirectory)/requirements.txt
   displayName: Install dependencies
 - task: SnykSecurityScan@1
   inputs:
     serviceConnectionEndpoint: 'ADO Snyk test'
     testType: 'app'
-    targetFile: '$(Build.SourcesDirectory)/pygoattest/requirements.txt'
+    targetFile: '$(Build.SourcesDirectory)/requirements.txt'
     monitorWhen: 'never'
     failOnIssues: true
     projectName: 'PyGoat Snyk'
