@@ -18,6 +18,13 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+# Step 1: Install dependencies
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r $(Build.SourcesDirectory)/requirements.txt
+  displayName: Install dependencies
+
+# Step 2: Snyk scan
 - task: SnykSecurityScan@1
   inputs:
     serviceConnectionEndpoint: 'ADO Snyk test'
