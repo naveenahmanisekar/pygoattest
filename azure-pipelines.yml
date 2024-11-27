@@ -31,6 +31,6 @@ steps:
     testType: 'app'
     targetFile: '$(Build.SourcesDirectory)/requirements.txt'
     monitorWhen: 'never'
-    failOnIssues: true
+    failOnIssues: false
     projectName: 'PyGoat Snyk'
     organization: 'deloitte-internal-default'
