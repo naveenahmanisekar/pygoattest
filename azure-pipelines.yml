@@ -32,7 +32,6 @@ steps:
     targetFile: '$(Build.SourcesDirectory)/requirements.txt'
     monitorWhen: 'never'
     failOnIssues: false
-    projectName: 'PyGoat Snyk'
     organization: 'deloitte-internal-default'
     additionalArguments: '--all-projects'
   
