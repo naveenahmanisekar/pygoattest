@@ -21,7 +21,7 @@ steps:
 # Step 1: Install dependencies
 - script: |
     python -m pip install --upgrade pip
-    pip install -r $(Build.SourcesDirectory)/requirements.txt
+    pip install -r requirements.txt
   displayName: Install dependencies
 
 # Step 2: Snyk scan
