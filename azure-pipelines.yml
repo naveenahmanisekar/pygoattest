@@ -34,3 +34,6 @@ steps:
     failOnIssues: false
     projectName: 'PyGoat Snyk'
     organization: 'deloitte-internal-default'
+    additionalArguments: '--all-projects'
+  
+      
