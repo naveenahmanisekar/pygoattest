@@ -29,7 +29,6 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'ADO Snyk test'
     testType: 'app'
-    targetFile: '$(Build.SourcesDirectory)/requirements.txt'
     monitorWhen: 'never'
     failOnIssues: false
     organization: 'deloitte-internal-default'
