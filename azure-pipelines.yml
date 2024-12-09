@@ -29,7 +29,7 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'ADO Snyk test'
     testType: 'app'
-    severityThreshold: 'critical'
+    severityThreshold: 'medium'
     monitorWhen: 'always'
     failOnIssues: false
     projectName: 'TEST'
