@@ -29,9 +29,10 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'ADO Snyk test'
     testType: 'app'
-    monitorWhen: 'never'
+    severityThreshold: 'critical'
+    monitorWhen: 'always'
     failOnIssues: false
+    projectName: 'TEST'
     organization: 'deloitte-internal-default'
-    additionalArguments: '--all-projects'
   
       
