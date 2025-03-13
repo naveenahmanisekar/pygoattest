@@ -32,5 +32,5 @@ steps:
     targetFile: '$(Build.SourcesDirectory)/requirements.txt'
     monitorWhen: 'never'
     failOnIssues: false
-    projectName: 'PyGoatSnyk'
-    organization: 'deloitte-internal-default'
+    projectName: 'PyGoatsnyk'
+    organization: 'cc186134-6bbb-4655-a49a-e3e42dd4bbc5'
