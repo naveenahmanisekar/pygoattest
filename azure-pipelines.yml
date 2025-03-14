@@ -30,11 +30,12 @@ steps:
     serviceConnectionEndpoint: 'ADO Snyk test'
     testType: 'app'
     severityThreshold: 'medium'
+    targetFile: 'Pygoattest/requirements.txt'
     monitorWhen: 'always'
     failOnIssues: false
     projectName: 'TEST'
     organization: 'cc186134-6bbb-4655-a49a-e3e42dd4bbc5'
     
-  
+
   
       
