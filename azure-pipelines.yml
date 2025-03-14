@@ -29,7 +29,7 @@ steps:
   inputs:
     serviceConnectionEndpoint: 'ADO Snyk test'
     testType: 'app'
-    targetFile: 'D:\a\1\s\requirements.txt'
+    targetFile: '$(Build.SourcesDirectory)\requirements.txt'
     monitorWhen: 'never'
     failOnIssues: false
     projectName: 'PyGoatsnyk'
