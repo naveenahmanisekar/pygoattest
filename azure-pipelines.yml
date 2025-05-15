@@ -18,24 +18,37 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-# Step 1: Install dependencies
-- script: |
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
-  displayName: Install dependencies
 
-# Step 2: Snyk scan
-- task: SnykSecurityScan@1
+- script: 'pip install -r requirements.txt'
+  displayName: 'Command Line Script'
+
+
+- task: PythonScript@0
+  displayName: 'Run a Python script'
   inputs:
-    serviceConnectionEndpoint: 'ADO Snyk test'
-    testType: 'app'
-    severityThreshold: 'medium'
-    targetFile: 'pygoattest\requirements.txt'
-    monitorWhen: 'always'
-    failOnIssues: false
-    projectName: 'TEST'
-    organization: 'cc186134-6bbb-4655-a49a-e3e42dd4bbc5'
-    
+    scriptSource: inline
+    script: |
+     # Simple Python script
+     print("Hello, World!")
 
-  
-      
+
+- script: 'npm install snyk -g'
+  displayName: 'Install Snyk CLI'
+
+#Your build pipeline references an undefined variable named ‘snyk_token’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+
+- script: 'snyk auth $(snyk_token)'
+  displayName: 'Authenticate Snyk CLI'
+
+
+- script: |
+   snyk test 
+  displayName: 'Run Snyk OSS Scan'
+
+#Your build pipeline references an undefined variable named ‘snyk_org_id’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+
+
+- script: 'snyk monitor --org=$(snyk_org_id) '
+  displayName: 'Run Snyk monitor'
+  condition: succeededOrFailed()
