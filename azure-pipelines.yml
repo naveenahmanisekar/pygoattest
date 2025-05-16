@@ -41,13 +41,12 @@ steps:
 
 # Run Snyk OSS Scan
 - script: |
-    snyk test --all-projects 
+    snyk test --org=$(snyk_org_id) --project-name="TEST" 
   displayName: 'Run Snyk OSS Scan'
 
 # Send results to Snyk dashboard (monitor)
 - script: |
-    folder_name=$(basename "$(System.DefaultWorkingDirectory)")
-    snyk monitor --org=$(snyk_org_id) --project-name="${folder_name}"
+    snyk monitor --org=$(snyk_org_id) --project-name="TEST"
   displayName: 'Snyk Monitor with Dynamic Project Name'
   condition: succeededOrFailed()  # Always attempt to send results
   
