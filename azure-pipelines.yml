@@ -43,7 +43,7 @@ steps:
 - script: |
     snyk test --org=$(snyk_org_id) --project-name="TEST" 
   displayName: 'Run Snyk OSS Scan'
-  continueOnError: true
+  
 
 # Send results to Snyk dashboard (monitor)
 - script: |
