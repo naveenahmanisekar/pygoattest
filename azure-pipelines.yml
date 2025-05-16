@@ -19,36 +19,35 @@ steps:
   displayName: 'Run a multi-line script'
 
 
+# Install dependencies
 - script: 'pip install -r requirements.txt'
-  displayName: 'Command Line Script'
+  displayName: 'Install Python Dependencies'
 
-
+# Optional Python script run
 - task: PythonScript@0
-  displayName: 'Run a Python script'
+  displayName: 'Run Sample Python Script'
   inputs:
     scriptSource: inline
     script: |
-     # Simple Python script
-     print("Hello, World!")
+      print("Hello, World!")
 
-
-- script: 'npm install snyk -g'
+# Install Snyk CLI
+- script: 'npm install -g snyk'
   displayName: 'Install Snyk CLI'
 
-#Your build pipeline references an undefined variable named ‘snyk_token’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-
-
+# Authenticate with Snyk
 - script: 'snyk auth $(snyk_token)'
   displayName: 'Authenticate Snyk CLI'
 
-
+# Run Snyk OSS Scan
 - script: |
-   snyk test 
+    snyk test --all-projects 
   displayName: 'Run Snyk OSS Scan'
 
-#Your build pipeline references an undefined variable named ‘snyk_org_id’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-
-
-- script: 'snyk monitor --org=$(snyk_org_id) '
-  displayName: 'Run Snyk monitor'
-  condition: succeededOrFailed()
+# Send results to Snyk dashboard (monitor)
+- script: |
+    folder_name=$(basename "$(System.DefaultWorkingDirectory)")
+    snyk monitor --org=$(snyk_org_id) --project-name="${folder_name}"
+  displayName: 'Snyk Monitor with Dynamic Project Name'
+  condition: succeededOrFailed()  # Always attempt to send results
+  
