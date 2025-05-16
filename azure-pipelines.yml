@@ -41,14 +41,14 @@ steps:
 
 # Run Snyk OSS Scan
 - script: |
-    snyk test --org=$(snyk_org_id) --project-name="TEST" 
+    snyk test --org=$(snyk_org_id) 
   displayName: 'Run Snyk OSS Scan'
   condition: eq(variables['runSnykTest'], 'true')
   
 
 # Send results to Snyk dashboard (monitor)
 - script: |
-    snyk monitor --org=$(snyk_org_id) --project-name="TEST"
+    snyk monitor --org=$(snyk_org_id) --project-name=$(snyk_project_name)
   displayName: 'Snyk Monitor with Dynamic Project Name'
   condition: succeededOrFailed()  # Always attempt to send results
   
